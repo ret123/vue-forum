@@ -28,7 +28,8 @@ module.exports = {
 
         
     },
-    update(id,user) {
-        return db('users').where('id',id).update(user);
+    async update(id,user) {
+        const rows= await db('users').where('id',id).update(user,'*');
+        return rows[0];
     }
 }

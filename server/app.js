@@ -6,7 +6,7 @@ const passport = require('passport');
 
 require('dotenv').config();
 
-const {notFound, errorHandler} = require('./middleware');
+const {checkAuthHeader,setUser,notFound, errorHandler} = require('./middleware');
 
 
 var app = express();
@@ -18,8 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(passport.initialize());
-
-app.get('/',(req,res) => {
+app.use(setUser);
+app.get('/',checkAuthHeader,(req,res) => {
     res.json({
         message: 'Welcome to my community api!'
     });
