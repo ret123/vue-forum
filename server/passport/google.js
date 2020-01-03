@@ -19,7 +19,7 @@ passport.use(new GoogleStrategy({
   },
   async (accessToken, refreshToken, profile, cb) => {
     const email = profile.emails[0].value;
-    console.log(email);
+    
    
     const googleUser = {
       display_name: profile.displayName,
@@ -28,7 +28,7 @@ passport.use(new GoogleStrategy({
       image_url: profile.photos[0].value,
       role_id: 1
     };
-    console.log(googleUser);
+   
     try {
       let user = await users.findByEmail(email);
       if(user) {

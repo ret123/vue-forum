@@ -6,7 +6,7 @@
   <hr class="my-4">
   
   <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Sign up!</a>
+    <a class="btn btn-primary btn-lg" :href="getLoginUrl" role="button">Login with google</a>
   </p>
 </div>
   </div>
@@ -18,6 +18,14 @@
 
 export default {
   name: 'home',
- 
+  computed: {
+    getLoginUrl() {
+      if(window.location.hostname === 'localhost') {
+        return 'http://localhost:3000/auth/google'
+      } else {
+        return 'https://vue-forum-api.now.sh/auth/google'
+      }
+    }
+  }
 }
 </script>
